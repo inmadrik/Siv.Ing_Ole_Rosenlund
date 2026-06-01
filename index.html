@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ole Rosenlund – Sivilingeniør</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E45;
+    --steel: #2E4A6A;
+    --accent: #C8A96E;
+    --accent-light: #E8D5A8;
+    --white: #F7F5F0;
+    --muted: #8A9BB0;
+    --text: #1C2B3A;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(13, 27, 42, 0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hjem {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(46, 74, 106, 0.4) 0%, transparent 70%),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(200, 169, 110, 0.03) 60px,
+        rgba(200, 169, 110, 0.03) 61px
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(247, 245, 240, 0.65);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(200, 169, 110, 0.4);
+    color: var(--accent-light);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    background: transparent;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 4rem 0;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200, 169, 110, 0.15);
+    padding: 1.75rem 2rem;
+    position: relative;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+  }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 3rem; }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #5A7090;
+    max-width: 560px;
+    margin-bottom: 4rem;
+  }
+
+  /* ── OM MEG ── */
+  #om {
+    background: var(--white);
+  }
+
+  .om-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .om-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--navy-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portrait-frame::after {
+    content: 'OR';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(200, 169, 110, 0.25);
+    letter-spacing: 0.05em;
+  }
+
+  .portrait-accent {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    border: 2px solid rgba(200, 169, 110, 0.3);
+    z-index: -1;
+  }
+
+  .om-text h2 { margin-bottom: 0.5rem; }
+
+  .om-ingress {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #5A7090;
+    margin-bottom: 2rem;
+  }
+
+  .om-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #4A6080;
+    margin-bottom: 2.5rem;
+  }
+
+  .kompetanser {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border: 1px solid rgba(46, 74, 106, 0.25);
+    color: var(--steel);
+    background: rgba(46, 74, 106, 0.05);
+  }
+
+  /* ── ERFARING ── */
+  #erfaring {
+    background: #F0EDE6;
+  }
+
+  .erfaring-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    padding: 1.5rem 0;
+    border-left: 2px solid rgba(46, 74, 106, 0.15);
+    padding-left: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 1.75rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .timeline-item.active {
+    border-color: var(--accent);
+  }
+
+  .timeline-item.active::before {
+    background: var(--accent);
+    transform: scale(1.4);
+  }
+
+  .timeline-item.active .tl-company { color: var(--navy); }
+
+  .tl-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-company {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4A6080;
+    margin-bottom: 0.2rem;
+    transition: color 0.2s;
+  }
+
+  .tl-role {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .erfaring-detail {
+    background: var(--white);
+    padding: 2.5rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  .detail-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-header h3 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .detail-header p {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .detail-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #4A6080;
+    margin-bottom: 2rem;
+  }
+
+  .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .detail-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    background: var(--navy);
+    color: var(--accent-light);
+  }
+
+  /* ── PROSJEKTER ── */
+  #prosjekter {
+    background: var(--navy);
+  }
+
+  #prosjekter h2 { color: var(--white); }
+  #prosjekter .section-eyebrow { color: var(--accent); }
+  #prosjekter .section-intro { color: rgba(247, 245, 240, 0.5); }
+
+  .prosjekt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+  }
+
+  .prosjekt-card {
+    background: var(--navy-mid);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    border: 1px solid rgba(200, 169, 110, 0.07);
+  }
+
+  .prosjekt-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(200, 169, 110, 0.06);
+    line-height: 1;
+  }
+
+  .prosjekt-card:hover { background: rgba(200, 169, 110, 0.07); }
+
+  .prosjekt-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .prosjekt-card h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .prosjekt-card p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(247, 245, 240, 0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  .prosjekt-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .prosjekt-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* ── KONTAKT ── */
+  #kontakt {
+    background: var(--white);
+  }
+
+  .kontakt-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .kontakt-info h2 { margin-bottom: 0.75rem; }
+
+  .kontakt-ingress {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #5A7090;
+    margin-bottom: 3rem;
+  }
+
+  .kontakt-detaljer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .kontakt-rad {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .kontakt-ikon {
+    width: 40px; height: 40px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .kontakt-ikon svg {
+    width: 18px; height: 18px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .kontakt-rad-tekst {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #4A6080;
+  }
+
+  .kontakt-rad-tekst strong {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── SKJEMA ── */
+  form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  input, textarea, select {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(46, 74, 106, 0.2);
+    background: rgba(46, 74, 106, 0.02);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    background: rgba(200, 169, 110, 0.04);
+  }
+
+  textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit { margin-top: 0.5rem; }
+
+  .success-msg {
+    display: none;
+    padding: 1rem 1.25rem;
+    background: rgba(46, 74, 106, 0.06);
+    border-left: 3px solid var(--accent);
+    font-size: 0.9rem;
+    color: var(--navy);
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--accent);
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(247, 245, 240, 0.35);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+
+    #hjem { grid-template-columns: 1fr; padding: 8rem 1.5rem 4rem; }
+    .hero-visual { justify-content: flex-start; margin-top: 3rem; }
+    .hero-stats { grid-template-rows: auto; grid-template-columns: 1fr 1fr; max-width: 100%; }
+
+    section { padding: 5rem 1.5rem; }
+
+    .om-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .portrait-frame { aspect-ratio: 3/2; }
+    .portrait-accent { display: none; }
+
+    .erfaring-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .timeline { flex-direction: row; overflow-x: auto; border-left: none; padding-bottom: 1rem; gap: 0; }
+    .timeline-item { border-left: none; border-top: 2px solid rgba(46,74,106,0.15); padding-left: 0; padding-top: 1.2rem; min-width: 160px; }
+    .timeline-item.active { border-top-color: var(--accent); }
+    .timeline-item::before { top: -5px; left: 1.5rem; }
+
+    .prosjekt-grid { grid-template-columns: 1fr; gap: 1px; }
+
+    .kontakt-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hjem" class="nav-logo">Ole Rosenlund</a>
+  <ul class="nav-links">
+    <li><a href="#om">Om meg</a></li>
+    <li><a href="#erfaring">Erfaring</a></li>
+    <li><a href="#prosjekter">Prosjekter</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hjem">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sivilingeniør</div>
+    <h1>Ole<br><em>Rosenlund</em></h1>
+    <p class="hero-desc">
+      Erfaren sivilingeniør med bred kompetanse innen teknisk rådgivning,
+      prosjektledelse og gjennomføring av komplekse ingeniørprosjekter.
+    </p>
+    <div class="hero-ctas">
+      <a href="#prosjekter" class="btn-primary">Se prosjekter</a>
+      <a href="#kontakt" class="btn-ghost">Ta kontakt</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">År med erfaring</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40+</div>
+        <div class="stat-label">Gjennomførte prosjekter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OM MEG -->
+<section id="om">
+  <div class="om-grid">
+    <div class="om-portrait">
+      <div class="portrait-frame"></div>
+      <div class="portrait-accent"></div>
+    </div>
+    <div class="om-text">
+      <div class="section-eyebrow">Om meg</div>
+      <h2>Ingeniør med<br>presisjon og overblikk</h2>
+      <p class="om-ingress">
+        Jeg er Siv.Ing. Ole Rosenlund — en engasjert ingeniør med lidenskap for
+        å løse teknisk krevende problemstillinger og levere robuste løsninger.
+      </p>
+      <p class="om-body">
+        Gjennom mange år i bransjen har jeg opparbeidet meg bred erfaring innen
+        teknisk rådgivning, prosjektstyring og tverrfaglig samarbeid. Jeg setter
+        pris på å jobbe tett med kunder og kollegaer for å finne løsninger som
+        er bærekraftige, kostnadseffektive og holder høy faglig kvalitet.
+        <br><br>
+        Min bakgrunn kombinerer solid teknisk kompetanse med god forretningsforståelse,
+        noe som gjør meg i stand til å kommunisere effektivt på tvers av faggrupper
+        og ta gode beslutninger i komplekse prosjekter.
+      </p>
+      <div class="kompetanser">
+        <span class="tag">Prosjektledelse</span>
+        <span class="tag">Teknisk rådgivning</span>
+        <span class="tag">Konstruksjonsteknikk</span>
+        <span class="tag">Kvalitetssikring</span>
+        <span class="tag">Bærekraft</span>
+        <span class="tag">BIM</span>
+        <span class="tag">Risikoanalyse</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERFARING -->
+<section id="erfaring">
+  <div class="section-eyebrow">Karriere</div>
+  <h2>Erfaring</h2>
+  <p class="section-intro">Et sammendrag av min faglige karriere og de rollene som har formet meg som ingeniør.</p>
+
+  <div class="erfaring-grid">
+    <div class="timeline">
+      <div class="timeline-item active" data-detail="0">
+        <div class="tl-year">2020 – i dag</div>
+        <div class="tl-company">Aktuell arbeidsgiver</div>
+        <div class="tl-role">Seniorrådgiver / Prosjektleder</div>
+      </div>
+      <div class="timeline-item" data-detail="1">
+        <div class="tl-year">2015 – 2020</div>
+        <div class="tl-company">Tidligere selskap</div>
+        <div class="tl-role">Rådgivende ingeniør</div>
+      </div>
+      <div class="timeline-item" data-detail="2">
+        <div class="tl-year">2010 – 2015</div>
+        <div class="tl-company">Tidligere selskap</div>
+        <div class="tl-role">Ingeniør</div>
+      </div>
+      <div class="timeline-item" data-detail="3">
+        <div class="tl-year">2008 – 2010</div>
+        <div class="tl-company">NTNU / Utdanning</div>
+        <div class="tl-role">Sivilingeniørgrad</div>
+      </div>
+    </div>
+
+    <div class="erfaring-detail" id="erfaring-detail">
+      <div class="detail-header">
+        <h3 id="det-title">Aktuell arbeidsgiver</h3>
+        <p id="det-meta">Seniorrådgiver / Prosjektleder · 2020 – i dag</p>
+      </div>
+      <p class="detail-body" id="det-body">
+        I min nåværende rolle er jeg ansvarlig for å lede teknisk krevende prosjekter
+        fra tidligfase gjennom detaljprosjektering og til ferdigstillelse. Jeg
+        koordinerer tverrfaglige team, sikrer fremdrift og kvalitet, og fungerer
+        som teknisk kontaktpunkt mot byggherre og underleverandører.
+        <br><br>
+        Ansvarsområdene inkluderer faglig godkjenning, internkontroll og
+        prosjektøkonomisk oppfølging.
+      </p>
+      <div class="detail-tags" id="det-tags">
+        <span class="detail-tag">Prosjektledelse</span>
+        <span class="detail-tag">Teknisk rådgivning</span>
+        <span class="detail-tag">Tverrfag</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSJEKTER -->
+<section id="prosjekter">
+  <div class="section-eyebrow">Portefølje</div>
+  <h2>Utvalgte prosjekter</h2>
+  <p class="section-intro">Et utvalg av prosjekter som demonstrerer bredden og dybden i min faglige kompetanse.</p>
+
+  <div class="prosjekt-grid">
+    <div class="prosjekt-card" data-num="01">
+      <div class="prosjekt-type">Infrastruktur</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+    <div class="prosjekt-card" data-num="02">
+      <div class="prosjekt-type">Bygg & Anlegg</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+    <div class="prosjekt-card" data-num="03">
+      <div class="prosjekt-type">Rådgivning</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+    <div class="prosjekt-card" data-num="04">
+      <div class="prosjekt-type">Industri</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+    <div class="prosjekt-card" data-num="05">
+      <div class="prosjekt-type">Energi</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+    <div class="prosjekt-card" data-num="06">
+      <div class="prosjekt-type">Offentlig sektor</div>
+      <h3>Prosjektnavn – beskriv prosjektet her</h3>
+      <p>Kort beskrivelse av prosjektets omfang, din rolle, og hvilke tekniske utfordringer som ble løst. Legg gjerne inn et konkret resultat.</p>
+      <div class="prosjekt-meta">
+        <span>📍 Sted</span>
+        <span>📅 Årstall</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="kontakt-wrapper">
+    <div class="kontakt-info">
+      <div class="section-eyebrow">Kontakt</div>
+      <h2>La oss ta en prat</h2>
+      <p class="kontakt-ingress">
+        Har du et prosjekt du ønsker å diskutere, eller er du interessert i
+        et samarbeid? Fyll ut skjemaet eller ta direkte kontakt.
+      </p>
+      <div class="kontakt-detaljer">
+        <div class="kontakt-rad">
+          <div class="kontakt-ikon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="kontakt-rad-tekst">
+            <strong>E-post</strong>
+            ole.rosenlund@epost.no
+          </div>
+        </div>
+        <div class="kontakt-rad">
+          <div class="kontakt-ikon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 5.37 5.37l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          </div>
+          <div class="kontakt-rad-tekst">
+            <strong>Telefon</strong>
+            +47 XXX XX XXX
+          </div>
+        </div>
+        <div class="kontakt-rad">
+          <div class="kontakt-ikon">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div class="kontakt-rad-tekst">
+            <strong>LinkedIn</strong>
+            linkedin.com/in/ole-rosenlund
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="kontakt-skjema" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="navn">Navn *</label>
+          <input type="text" id="navn" name="navn" placeholder="Ditt fulle navn" required>
+        </div>
+        <div class="form-group">
+          <label for="epost">E-post *</label>
+          <input type="email" id="epost" name="epost" placeholder="din@epost.no" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="selskap">Selskap</label>
+        <input type="text" id="selskap" name="selskap" placeholder="Din virksomhet (valgfritt)">
+      </div>
+      <div class="form-group">
+        <label for="emne">Emne *</label>
+        <select id="emne" name="emne" required>
+          <option value="" disabled selected>Velg et emne</option>
+          <option>Prosjektforespørsel</option>
+          <option>Rådgivning</option>
+          <option>Samarbeid</option>
+          <option>Annet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="melding">Melding *</label>
+        <textarea id="melding" name="melding" placeholder="Beskriv prosjektet eller henvendelsen din…" required></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary" style="width:100%; border:none; font-family:inherit; cursor:pointer;">Send melding →</button>
+      </div>
+      <div class="success-msg" id="success-msg">
+        ✓ Takk for meldingen! Jeg svarer deg så snart som mulig.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Siv.Ing. Ole Rosenlund</span>
+  <span class="footer-copy">© 2026 – Alle rettigheter forbeholdt</span>
+</footer>
+
+<script>
+  /* ── Erfaring tabs ── */
+  const erfaringData = [
+    {
+      title: 'Aktuell arbeidsgiver',
+      meta: 'Seniorrådgiver / Prosjektleder · 2020 – i dag',
+      body: 'I min nåværende rolle er jeg ansvarlig for å lede teknisk krevende prosjekter fra tidligfase gjennom detaljprosjektering og til ferdigstillelse. Jeg koordinerer tverrfaglige team, sikrer fremdrift og kvalitet, og fungerer som teknisk kontaktpunkt mot byggherre og underleverandører.\n\nAnsvarsområdene inkluderer faglig godkjenning, internkontroll og prosjektøkonomisk oppfølging.',
+      tags: ['Prosjektledelse', 'Teknisk rådgivning', 'Tverrfag']
+    },
+    {
+      title: 'Tidligere selskap',
+      meta: 'Rådgivende ingeniør · 2015 – 2020',
+      body: 'Arbeidet som faglig ansvarlig ingeniør på en rekke prosjekter innen [fagområde]. Bidro til utvikling av rutiner og metodikk internt, og representerte selskapet i kundedialogen.',
+      tags: ['Rådgivning', 'Fagansvar', 'Kundekontakt']
+    },
+    {
+      title: 'Tidligere selskap',
+      meta: 'Ingeniør · 2010 – 2015',
+      body: 'Jobbet med prosjektering og oppfølging av bygg- og anleggsprosjekter. Fikk god grunnleggende erfaring innen teknisk beregning, tegningsproduksjon og tverrfaglig koordinering.',
+      tags: ['Prosjektering', 'Beregning', 'Tegning']
+    },
+    {
+      title: 'NTNU – Norges teknisk-naturvitenskapelige universitet',
+      meta: 'Sivilingeniørgrad · 2004 – 2010',
+      body: 'Utdannet sivilingeniør fra NTNU. Masteroppgaven omhandlet [tema]. Aktiv i faglig og sosialt studentmiljø gjennom studietiden.',
+      tags: ['NTNU', 'Mastergrad', 'Sivilingeniør']
+    }
+  ];
+
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
+      item.classList.add('active');
+      const d = erfaringData[i];
+      document.getElementById('det-title').textContent = d.title;
+      document.getElementById('det-meta').textContent = d.meta;
+      document.getElementById('det-body').innerHTML = d.body.replace('\n\n', '<br><br>');
+      const tags = document.getElementById('det-tags');
+      tags.innerHTML = d.tags.map(t => `<span class="detail-tag">${t}</span>`).join('');
+    });
+  });
+
+  /* ── Kontaktskjema ── */
+  document.getElementById('kontakt-skjema').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'Sender…';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('success-msg').style.display = 'block';
+      btn.textContent = 'Sendt ✓';
+    }, 1000);
+  });
+
+  /* ── Scroll-aktivert nav ── */
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const curr = window.scrollY;
+    if (curr > 80) {
+      nav.style.background = 'rgba(13, 27, 42, 0.97)';
+    } else {
+      nav.style.background = 'rgba(13, 27, 42, 0.92)';
+    }
+    lastScroll = curr;
+  });
+
+  /* ── Fade-in on scroll ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.prosjekt-card, .stat-card, .om-portrait').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
